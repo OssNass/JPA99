@@ -174,7 +174,7 @@ public class UserManager {
      */
     public boolean logIn(String username, String password) {
         if (isLoggedIn())
-            throw new IllegalStateException("You need to logout before logging in again");
+            throw new IllegalStateException("You need to be logout before logging in again");
         props.put(JPA_PROPERTY_URL, url);
         props.put(JPA_PROPERTY_DRIVER, dbImplAdapter.getDriver());
         props.setProperty(JPA_PROPERTY_USERNAME, username);
@@ -206,7 +206,7 @@ public class UserManager {
     }
 
 
-    private void scanRepositories(){
+    private void scanRepositories() throws IllegalStateException {
         try (var res = new ClassGraph().enableAnnotationInfo().scan()) {
             var cil = res.getClassesWithAnnotation(Repository.class.getCanonicalName());
             for (var cinfo : cil) {
@@ -216,13 +216,7 @@ public class UserManager {
                 var classz = cinfo.loadClass();
                 repositories.put(dbci.value(), (JPARepository) classz.getDeclaredConstructor().newInstance());
             }
-        } catch (InstantiationException | InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
+        } catch (InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
             e.printStackTrace();
         }
     }

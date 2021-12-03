@@ -76,7 +76,7 @@ public abstract class JPARepository<EntityClass, IdClass> {
     /**
      * Creates a {@link JPAJinqStream} to be used the user for type safe query building
      *
-     * @return the created jpa jinq stream
+     * @return the created jpa JINQ stream
      */
     public JPAJinqStream<EntityClass> createStream() {
         return provider.streamAll(em, entityClass());
@@ -196,21 +196,11 @@ public abstract class JPARepository<EntityClass, IdClass> {
         transaction.commit();
     }
 
-//    /**
-//     * Execute a custom native query and returns a {@link List} of entities of type EntityClass
-//     *
-//     * @param query the query to execute
-//     * @return the List of entities
-//     */
-//    public List<EntityClass> executeQuery(String query) {
-//        return em.createNativeQuery(query, entityClass()).getResultList();
-//    }
-//
-//    public int executeNativeUpdate(String query) {
-//        var transaction = em.getTransaction();
-//        transaction.begin();
-//        int res = em.createNativeQuery(query).executeUpdate();
-//        transaction.commit();
-//        return res;
-//    }
+    /**
+     * Returns the current {@link EntityManager} in case you want to do something special
+     * @return the current {@link EntityManager}
+     */
+    public EntityManager getEntityManager(){
+        return em;
+    }
 }

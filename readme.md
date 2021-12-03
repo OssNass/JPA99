@@ -7,7 +7,6 @@ This library uses JINQ to allow easier creation of type-safe queries using Java 
 Currently supports Javax JPA 2.2 with plans to move to Jakarta JPA 3.0 when Hibernate does, allowing JINQ to move to Jakarta JPA 3.0
  
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.ossnass/nicejpa-spring.svg)][maven-repo]
-[![Bintray](https://api.bintray.com/packages/bernardo-mg/maven/nicejpa-spring/images/download.svg)][bintray-repo]
 
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
 [![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
@@ -87,7 +86,7 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 The project has been released under the [MIT License][license].
 
 [maven-repo]: http://mvnrepository.com/artifact/io.github.ossnass/nicejpa-spring
-[issues]: https://github.com/OssNass/JPA99.git/issues
+[issues]: https://github.com/OssNass/JPA99/issues
 [javadoc-develop]: https:///nicejpa-spring/apidocs
 [javadoc-release]: https:///nicejpa-spring/apidocs
 [license]: http://www.opensource.org/licenses/mit-license.php
