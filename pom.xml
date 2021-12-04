@@ -8,11 +8,21 @@
     <artifactId>jpa99</artifactId>
     <version>1.0.0</version>
     <description>A Library to provide an easy way to manage JPA in desktop application</description>
+    <url>https://github.com/OssNass/JPA99</url>
+    <inceptionYear>2021</inceptionYear>
     <developers>
         <developer>
             <id>ossnass</id>
             <name>Ossama Nasser</name>
             <email>ossnass@gmail.com</email>
+            <url>https://github.com/ossnass</url>
+            <organization>Ossama Nasser</organization>
+            <organizationUrl>https://github.com/ossnass</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>+2</timezone>
+            <properties />
         </developer>
     </developers>
     <properties>
