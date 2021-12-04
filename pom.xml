@@ -68,7 +68,10 @@
                             <goal>sign</goal>
                         </goals>
                         <configuration>
-                            <passphrase>${gpg-passphrase}</passphrase>
+                                <gpgArguments>
+                                    <arg>--pinentry-mode</arg>
+                                    <arg>loopback</arg>
+                                </gpgArguments>
                         </configuration>
                     </execution>
                 </executions>
