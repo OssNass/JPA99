@@ -15,10 +15,11 @@ jobs:
           server-id: ossrh
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
-          gpg-passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
       - name: Publish package
         run: mvn --batch-mode deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SIGN_KEY_ID: ${{ MAVEN_GPG_KEY_NAME }}
+          SIGN_KEY: ${{ MAVEN_GPG_PRIVATE_KEY }}
+          SIGN_KEY_PASS: ${{ MAVEN_GPG_PASSPHRASE }}
