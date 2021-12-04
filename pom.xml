@@ -10,6 +10,7 @@
     <description>A Library to provide an easy way to manage JPA in desktop application</description>
     <url>https://github.com/OssNass/JPA99</url>
     <inceptionYear>2021</inceptionYear>
+    <name>JPA99</name>
     <developers>
         <developer>
             <id>ossnass</id>
