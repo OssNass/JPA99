@@ -6,7 +6,7 @@
 
     <groupId>io.github.ossnass</groupId>
     <artifactId>jpa99</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
     <description>A Library to provide an easy way to manage JPA in desktop application</description>
     <url>https://github.com/OssNass/JPA99</url>
     <inceptionYear>2021</inceptionYear>
@@ -90,7 +90,7 @@
                             <goal>sign</goal>
                         </goals>
                         <configuration>
-                            <passphrase>gpg.passphrase</passphrase>
+                            <passphrase>${gpg.passphrase}</passphrase>
                             <gpgArguments>
                                 <arg>--pinentry-mode</arg>
                                 <arg>loopback</arg>
