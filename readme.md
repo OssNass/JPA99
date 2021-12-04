@@ -8,30 +8,12 @@ Currently supports Javax JPA 2.2 with plans to move to Jakarta JPA 3.0 when Hibe
  
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.ossnass/nicejpa-spring.svg)][maven-repo]
 
-[![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
-[![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
-
-[![Release javadocs](https://img.shields.io/badge/javadocs-release-blue.svg)][javadoc-release]
-[![Development javadocs](https://img.shields.io/badge/javadocs-develop-blue.svg)][javadoc-develop]
-
 ## Features
 
 It supports the following feature:
 - Support for multiple databases, currently only H2, with plans to Add PostgreSQL and MySQL and more.
 - Uses Repositories to perform CRUD operations, using Singleton design pattern.
 - Uses JINQ to create type-safe queries using Java Functional API
-
-## Documentation
-
-Documentation is always generated for the latest release, kept in the 'master' branch:
-
-- The [latest release documentation page][site-release].
-- The [latest release Javadoc site][javadoc-release].
-
-Documentation is also generated from the latest snapshot, taken from the 'develop' branch:
-
-- The [the latest snapshot documentation page][site-develop].
-- The [latest snapshot Javadoc site][javadoc-develop].
 
 ### Building the docs
 
@@ -49,6 +31,43 @@ The application is coded in Java, using Maven to manage the project.
 
 It is a Java library, meant to be included as a dependency on any project which may want to make use of it.
 
+First import the library:
+
+In Maven
+```xml
+    <dependency>
+        <groupId>io.github.ossnass</groupId>
+        <artifactId>jpa99</artifactId>
+        <version>1.0.0</version> 
+    </dependency>
+```
+
+In Gradle
+```groovy
+    implementation 'io.github.ossnass:jpa99:1.0.0'
+```
+
+Next we need to specify few things:
+1. Persistence Unit name:
+    ```java
+        UserManager.getUserManager().setPersistenceUnitName("testPU");
+    ```
+2. Database Driver:
+    ```java
+        UserManager.getUserManager().setDatabaseAdapter(new H2Adabpter());
+    ```
+3. Database Properties:
+
+    This section is important to place information about the database in the persistence.xml file, simply you can:
+    ```java
+UserManager.getUserManager().setDatabaseURL("", 0, "testdb").logIn("", "");
+    ```
+
+5. Open Connection:
+    No we open connection by specifying username and password "optional"
+     ```java
+    UserManager.getUserManager().logIn("", "");
+    ```
 ### Prerequisites
 
 The project has been tested on the following Java versions:
@@ -85,11 +104,7 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 
 The project has been released under the [MIT License][license].
 
-[maven-repo]: http://mvnrepository.com/artifact/io.github.ossnass/nicejpa-spring
+[maven-repo]: http://mvnrepository.com/artifact/io.github.ossnass/jpa99
 [issues]: https://github.com/OssNass/JPA99/issues
-[javadoc-develop]: https:///nicejpa-spring/apidocs
-[javadoc-release]: https:///nicejpa-spring/apidocs
 [license]: http://www.opensource.org/licenses/mit-license.php
 [scm]: https://github.com/OssNass/JPA99
-[site-develop]: https:///nicejpa-spring
-[site-release]: https:///nicejpa-spring
