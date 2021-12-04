@@ -67,6 +67,10 @@
                         <goals>
                             <goal>sign</goal>
                         </goals>
+                        <configuration>
+                            <passphrase>${gpg-passphrase}</passphrase>
+                            <keyname>${gpg-key}</keyname>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
