@@ -1,5 +1,10 @@
 package io.github.ossnass.jpa99;
 
+/**
+ * This class represent an adapter to PostgreSQL database management system.
+ * 
+ * Currently no extra properties are supported
+ */
 public class PostgreSQLAdapter extends DBAdapter {
 
     public PostgreSQLAdapter() {
