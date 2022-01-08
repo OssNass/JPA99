@@ -1,3 +1,4 @@
+
 # JPA 99
 
 A library that eases the development of JPA desktop application.
@@ -5,8 +6,10 @@ A library that eases the development of JPA desktop application.
 This library uses JINQ to allow easier creation of type-safe queries using Java Functional API.
 
 Currently supports Javax JPA 2.2 with plans to move to Jakarta JPA 3.0 when Hibernate does, allowing JINQ to move to Jakarta JPA 3.0
- 
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.ossnass/nicejpa-spring.svg)][maven-repo]
+
+[![Maven Central](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2Fossnass%2Fjpa99%2Fmaven-metadata.xml)][maven-repo]
+![Supported JDK](https://img.shields.io/badge/JDK-%3E%3D11.0.13-green)
+![JPA Version](https://img.shields.io/badge/JPA-2.2-green)
 
 ## Features
 
@@ -38,13 +41,13 @@ In Maven
     <dependency>
         <groupId>io.github.ossnass</groupId>
         <artifactId>jpa99</artifactId>
-        <version>1.0.0</version> 
+        <version>1.0.1</version>
     </dependency>
 ```
 
 In Gradle
 ```groovy
-    implementation 'io.github.ossnass:jpa99:1.0.0'
+    implementation 'io.github.ossnass:jpa99:1.0.1'
 ```
 
 Next we need to specify few things:
@@ -60,13 +63,13 @@ Next we need to specify few things:
 
     This section is important to place information about the database in the persistence.xml file, simply you can:
     ```java
-UserManager.getUserManager().setDatabaseURL("", 0, "testdb").logIn("", "");
+        UserManager.getUserManager().setDatabaseURL("", 0, "testdb").logIn("", "");
     ```
 
 5. Open Connection:
     No we open connection by specifying username and password "optional"
      ```java
-    UserManager.getUserManager().logIn("", "");
+        UserManager.getUserManager().logIn("", "");
     ```
 ### Prerequisites
 
