@@ -51,11 +51,14 @@ In Gradle
 ```
 
 Next we need to specify few things:
+
 1. Persistence Unit name:
+
     ```java
         UserManager.getUserManager().setPersistenceUnitName("testPU");
     ```
 2. Database Driver:
+
     ```java
         UserManager.getUserManager().setDatabaseAdapter(new H2Adabpter());
     ```
@@ -67,7 +70,8 @@ Next we need to specify few things:
     ```
 
 5. Open Connection:
-    No we open connection by specifying username and password "optional"
+
+    We open connection by specifying username and password "optional"
      ```java
         UserManager.getUserManager().logIn("", "");
     ```
