@@ -1,0 +1,43 @@
+name: Release
+on:
+  push:
+    branches: [ master ]
+jobs:
+  Release:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && startsWith(github.event.head_commit.message, '[release]')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Cache Maven
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build
+        run: |
+          chmod +x mvnw
+          ./mvnw -B verify --file pom.xml
+      - name: Set up Maven Central
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+          server-id: central
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_CENTRAL_TOKEN
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
+      - name: Release
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSS_USERNAME }}
+          MAVEN_CENTRAL_TOKEN: ${{ secrets.OSS_PASSWORD }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          git config user.name "${{ github.event.head_commit.committer.name }}"
+          git config user.email "${{ github.event.head_commit.committer.email }}"
+          mvn -B --file pom.xml release:prepare release:perform -Drepository.url=https://${GITHUB_ACTOR}:relaxed:{{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
