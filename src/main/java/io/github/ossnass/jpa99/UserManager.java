@@ -25,6 +25,7 @@ public class UserManager {
      * The roles of the user
      */
     private final Set<String> roles;
+    private final Map<String, JPARepository> repositories;
     /**
      * The entity manager factory
      */
@@ -37,11 +38,12 @@ public class UserManager {
      * The database Adapter
      */
     private DBAdapter dbImplAdapter;
-
+    /**
+     * The location of scan path for the database
+     */
+    private String[] packageList;
     private String url;
-
     private Exception lastException;
-    private final Map<String, JPARepository> repositories;
 
     private UserManager() {
         props = new Properties();
@@ -53,6 +55,27 @@ public class UserManager {
         if (um == null)
             um = new UserManager();
         return um;
+    }
+
+
+    /**
+     * Returns the list of locations to scan for annotated classes with {@link Repository} annotation
+     *
+     * @return the list of locations to scan for annotated classes with {@link Repository} annotation
+     */
+    public String[] getPackageList() {
+        return packageList;
+    }
+
+    /**
+     * Changes the list of locations to scan for annotated class with {@link Repository} annotation
+     *
+     * @param packageList the list of locations to scan for annotated class with {@link Repository} annotation
+     * @return the current UserManager
+     */
+    public UserManager setPackageList(String[] packageList) {
+        this.packageList = packageList;
+        return this;
     }
 
     /**
@@ -205,9 +228,16 @@ public class UserManager {
         return roles;
     }
 
+    private String[] getCallingMethod() {
+        StackWalker walker = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE);
+        var caller = walker.getCallerClass();
+        return new String[]{caller.getPackageName()};
+    }
 
     private void scanRepositories() throws IllegalStateException {
-        try (var res = new ClassGraph().enableAnnotationInfo().scan()) {
+        if (packageList == null)
+            packageList = getCallingMethod();
+        try (var res = new ClassGraph().enableAnnotationInfo().acceptPackages(packageList).scan()) {
             var cil = res.getClassesWithAnnotation(Repository.class.getCanonicalName());
             for (var cinfo : cil) {
                 var dbci = (Repository) cinfo.getAnnotationInfo(Repository.class.getCanonicalName()).loadClassAndInstantiate();
@@ -223,6 +253,7 @@ public class UserManager {
 
     /**
      * Returns an open repository
+     *
      * @param name the unique name of the repository
      * @return the repository
      */

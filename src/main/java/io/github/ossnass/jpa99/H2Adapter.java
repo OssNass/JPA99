@@ -16,12 +16,6 @@ package io.github.ossnass.jpa99;
  */
 public class H2Adapter extends DBAdapter {
 
-    public H2Adapter() {
-        changeUserPassword = "ALTER USER %s SET PASSWORD '%s';";
-        acquireUserRoles = "SELECT 1;";
-        driver = "org.h2.Driver";
-    }
-
     @Override
     public String createURL(String host, int port, String database) {
         String url = "";
@@ -54,5 +48,20 @@ public class H2Adapter extends DBAdapter {
     @Override
     public String[] availableExtraProperties() {
         return new String[]{"Mode"};
+    }
+
+    @Override
+    public String getChangeUserPassword() {
+        return "ALTER USER %s SET PASSWORD '%s';";
+    }
+
+    @Override
+    public String getAcquireUserRoles() {
+        return "SELECT 1;";
+    }
+
+    @Override
+    public String getDriver() {
+        return "org.h2.Driver";
     }
 }

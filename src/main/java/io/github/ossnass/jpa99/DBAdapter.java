@@ -15,18 +15,6 @@ import java.util.Map;
  */
 public abstract class DBAdapter {
     /**
-     * The query to change the user's password
-     */
-    protected String changeUserPassword;
-    /**
-     * The query to acquire the user's roles
-     */
-    protected String acquireUserRoles;
-    /**
-     * The FQDN of the database driver class
-     */
-    protected String driver;
-    /**
      * Extra set of properties specific to the database
      */
     protected Map<String, String> extraProperties = new HashMap<>();
@@ -64,27 +52,21 @@ public abstract class DBAdapter {
      *
      * @return the query used to change the user's password
      */
-    public String getChangeUserPassword() {
-        return changeUserPassword;
-    }
+    public abstract String getChangeUserPassword();
 
     /**
      * Returns the query used to acquire user's roles
      *
      * @return the query used to acquire user's roles
      */
-    public String getAcquireUserRoles() {
-        return acquireUserRoles;
-    }
+    public abstract String getAcquireUserRoles();
 
     /**
      * Returns the FQDN of the database driver
      *
      * @return the FQDN of the database driver
      */
-    public String getDriver() {
-        return driver;
-    }
+    public abstract String getDriver();
 
     /**
      * Returns the current set of used extra properties
