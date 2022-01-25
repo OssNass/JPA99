@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation is used to annotat a class extending @{link JPARepository},
+ * This annotation is used to annotate a class extending @{link JPARepository},
  * if that class is not annotated with this annotation, an error will be thrown.
  * 
  * The only value to be passed the ID of the repository 

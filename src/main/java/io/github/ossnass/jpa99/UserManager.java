@@ -239,12 +239,12 @@ public class UserManager {
             packageList = getCallingMethod();
         try (var res = new ClassGraph().enableAnnotationInfo().acceptPackages(packageList).scan()) {
             var cil = res.getClassesWithAnnotation(Repository.class.getCanonicalName());
-            for (var cinfo : cil) {
-                var dbci = (Repository) cinfo.getAnnotationInfo(Repository.class.getCanonicalName()).loadClassAndInstantiate();
-                if (repositories.containsKey(dbci.value()))
-                    throw new RuntimeException(String.format("Database controller %s already exists", dbci.value()));
-                var classz = cinfo.loadClass();
-                repositories.put(dbci.value(), (JPARepository) classz.getDeclaredConstructor().newInstance());
+            for (var cInfo : cil) {
+                var dbCi = (Repository) cInfo.getAnnotationInfo(Repository.class.getCanonicalName()).loadClassAndInstantiate();
+                if (repositories.containsKey(dbCi.value()))
+                    throw new RuntimeException(String.format("Database controller %s already exists", dbCi.value()));
+                var classz = cInfo.loadClass();
+                repositories.put(dbCi.value(), (JPARepository) classz.getDeclaredConstructor().newInstance());
             }
         } catch (InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
             e.printStackTrace();

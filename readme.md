@@ -47,7 +47,7 @@ In Maven
 
 In Gradle
 ```groovy
-    implementation 'io.github.ossnass:jpa99:1.0.1'
+    implementation 'io.github.ossnass:jpa99:1.1.0'
 ```
 
 Next we need to specify few things:
